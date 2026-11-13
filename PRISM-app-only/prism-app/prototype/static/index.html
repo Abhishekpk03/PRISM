@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRISM — Collapse Decision System</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">P</div>
+    <div class="brand-text">
+      <div class="brand-name">PRISM</div>
+      <div class="brand-sub">collapse decision system</div>
+    </div>
+  </div>
+
+  <nav id="nav">
+    <a href="#/dashboard" data-view="dashboard"><span class="ico" data-i="grid"></span>Dashboard</a>
+    <a href="#/queue" data-view="queue"><span class="ico" data-i="list"></span>Building queue</a>
+    <a href="#/intake" data-view="intake"><span class="ico" data-i="plus"></span>Intake</a>
+    <a href="#/ops" data-view="ops"><span class="ico" data-i="pulse"></span>Collapse ops</a>
+    <a href="#/tasking" data-view="tasking"><span class="ico" data-i="flag"></span>Tasking</a>
+    <a href="#/accuracy" data-view="accuracy"><span class="ico" data-i="target"></span>Accuracy</a>
+    <a href="#/data" data-view="data"><span class="ico" data-i="db"></span>Data</a>
+  </nav>
+
+  <div class="side-foot">
+    <div class="engine-row"><span class="dot" id="eng-dot"></span>
+      <span id="eng-text">connecting…</span></div>
+    <div class="engine-sub">prism/pipeline.py · <span id="eng-tests">—</span></div>
+  </div>
+</aside>
+
+<main>
+  <header class="topbar">
+    <div>
+      <h1 id="view-title">Dashboard</h1>
+      <p id="view-sub">Live view of the building queue and engine status.</p>
+    </div>
+    <div class="top-actions">
+      <input id="global-search" class="search" placeholder="Search building or id…">
+      <button class="btn ghost" id="btn-refresh">Refresh</button>
+    </div>
+  </header>
+
+  <section id="view" class="view"></section>
+</main>
+
+<div id="toast" class="toast"></div>
+<div id="drawer" class="drawer"><div class="drawer-inner" id="drawer-inner"></div></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+PUSH PRISM TO GITHUB — 4 commands, about 60 seconds
+===================================================
+
+The folder `abhedya/` in this archive is a complete git repository with
+7 commits already made. Do not unzip only part of it, and do not delete the
+hidden `.git` folder — that folder IS the history.
+
+
+STEP 1 — Create an empty repository
+-----------------------------------
+Go to  https://github.com/new
+
+  Repository name : prism-collapse-decision      (or anything you like)
+  Visibility      : Public
+  DO NOT tick "Add a README file"
+  DO NOT add .gitignore
+  DO NOT choose a licence
+
+  The repository must be completely empty or the first push will be rejected.
+
+
+STEP 2 — Open a terminal inside the abhedya folder
+--------------------------------------------------
+  cd path/to/abhedya
+
+  Check that git sees the history:
+      git log --oneline
+  You should see 7 commits, ending with
+      "docs: problem statement, solution description, deck and research"
+
+
+STEP 3 — Point it at your new repository
+----------------------------------------
+  git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+
+  (replace YOUR-USERNAME and YOUR-REPO with what you created in step 1)
+
+
+STEP 4 — Push
+-------------
+  git push -u origin main
+
+
+IF GIT ASKS FOR A PASSWORD
+--------------------------
+GitHub does not accept your account password from the command line. It asks for
+a Personal Access Token instead:
+
+  github.com -> Settings -> Developer settings -> Personal access tokens
+  -> Fine-grained tokens -> Generate new token
+  -> Repository access: Only select repositories -> pick the new repo
+  -> Permissions: Contents = Read and write
+  -> Expiration: 7 days (or shorter)
+
+Use the token as the password when git prompts. Username is your GitHub username.
+Revoke the token once the push succeeds — you will not need it again.
+
+
+IF YOU PREFER THE GITHUB WEBSITE
+--------------------------------
+Uploading through the website will NOT preserve the commit history: it creates a
+single "Add files via upload" commit. That is acceptable if you only care about
+the files, but the command-line push above keeps the seven-commit history.
+
+
+VERIFY
+------
+After pushing, open the repository in a browser. You should see:
+
+  README.md rendered on the landing page, with the dashboard screenshot
+  prism/       the engine and the red-team suite
+  prototype/   the working Flask application
+  docs/        screenshots
+  7 commits
+
+Then confirm the code actually runs from a fresh clone:
+
+  git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git /tmp/check
+  cd /tmp/check
+  python3 prism/redteam.py        ->  expect "10/10 adversarial checks passed"
+  cd prototype && ./run.sh        ->  open http://localhost:8000
+
+
+WHAT IS IN THE REPOSITORY
+-------------------------
+  README.md                  Project overview, the nine stages, the 95% table
+  prism/pipeline.py          The engine (standard library only)
+  prism/redteam.py           10 adversarial checks, 10/10 passing
+  prism/PIPELINE.md          Stage-by-stage specification and assumptions
+  prototype/                 Flask + SQLite app, seven sections
+  PRISM_Problem_Statement.pdf   7-page gap analysis
+  PRISM_Solution_Description.pdf  10-page solution document
+  PRISM_pipeline.pptx        16-slide deck + speaker script
+  research/                  Analysis and figures behind the documents
+
+  Total: 54 files. The SQLite database is created on first run and is not
+  committed, which is intentional.
